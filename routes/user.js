@@ -47,7 +47,7 @@ router.get('/', function(req, res, next) {
   image:"https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQa8UBrARQh9MrmN_vNgKd-OVfIikTDele-XtYvydnb3kdR_LA7RZWsS_olrqRbOYBKMvdZKs5dW7hagwXXO3ZOAeuR6nAxemK4-iL2mXVSrJ1lT5yHLG9c&usqp=CAE"
 }
 ]
-  res.render('index', { products,admin:false });
+  res.render('user', { products,admin:false });
 });
 
 module.exports = router;
