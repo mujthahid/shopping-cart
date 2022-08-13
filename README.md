@@ -1,2 +1,2 @@
 # shopping-cart
-Trying to set up a small shopping cart as part of my project. 
+Trying to set up a small shopping cart application as part of my project. 
