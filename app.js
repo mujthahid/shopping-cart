@@ -10,6 +10,7 @@ var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 // installed fileupload
 var fileUpload =require('express-fileupload')
+var db =require('./config/connection')
 var app = express();
 
 // view engine setup
@@ -23,6 +24,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
+//connecting database
+db.connect((err)=>{
+  if(err) console.log('connection ERROR '+ err);
+   
+  else console.log('database connected successfully');
+})
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
 
