@@ -29,7 +29,7 @@ db.connect((err)=>{
   if(err) console.log('connection ERROR '+ err);
    
   else console.log('database connected successfully');
-})
+})//
 app.use('/', userRouter);
 app.use('/admin', adminRouter);
 
