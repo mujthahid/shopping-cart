@@ -1,0 +1,25 @@
+{{!-- user signup form --}}
+
+<section>
+    <div class="container">
+        <form action="/signup" method="post" >
+            <div class="form-group mt-4">
+                 <label for="Name">Name</label>
+    <input type="text" class="form-control" name="Name" id="Name"  placeholder="Enter name">
+            </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  
+  <button type="submit" class="btn btn-success">Signup</button>
+</form>
+
+    </div>
+    <div style="text-align: center;"><a  href="/login"><strong>Already have an account ?</strong></a> </div>
+</section>

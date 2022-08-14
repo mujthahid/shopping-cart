@@ -1,0 +1,48 @@
+[33mcommit 35e80200f917e1d3912bc99d96621456844ca3ff[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 6991548 7f239ad
+Author: Mujthahid <mujthahidk@gmail.com>
+Date:   Sun Aug 14 15:35:01 2022 +0530
+
+    Merge branch 'master' of https://github.com/mujthahid/shopping-cart
+
+[33mcommit 699154860ff7a7bc7e45ffcb007572ea8bfb6215[m
+Author: Mujthahid <mujthahidk@gmail.com>
+Date:   Sun Aug 14 15:28:33 2022 +0530
+
+    took back product datas from database to display on admin and user pages.
+
+[33mcommit 7f239ad29fbd9a10acc709b7f173366a2200c57e[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Mujthahid K <mujthahidk@gmail.com>
+Date:   Sat Aug 13 17:25:42 2022 +0530
+
+    Update README.md
+
+[33mcommit badbd90ea6e1f2ff1ab5a88fa217ebf368ba32a2[m
+Author: Mujthahid K <mujthahidk@gmail.com>
+Date:   Sat Aug 13 17:25:07 2022 +0530
+
+    Create README.md
+
+[33mcommit c75dc4c85c459307143f4af6b21b1d08530b354d[m
+Author: Mujthahid <mujthahidk@gmail.com>
+Date:   Sat Aug 13 17:18:34 2022 +0530
+
+    database connected. path set up for added products to the database collection.
+
+[33mcommit 22a79118b22401a8377a44c054b1a82c9bf244fa[m
+Author: Mujthahid <mujthahidk@gmail.com>
+Date:   Thu Aug 11 22:40:02 2022 +0530
+
+    admin page updated and add product function added
+
+[33mcommit 97e82a80da972fc5470929f22c67b0b23c6d2c92[m
+Author: Mujthahid <mujthahidk@gmail.com>
+Date:   Thu Aug 11 15:40:58 2022 +0530
+
+    some files renamed
+
+[33mcommit 2ab9b59798bdf27594ef2effcc4eb97a92517540[m[33m ([m[1;32mfeature[m[33m)[m
+Author: Mujthahid <mujthahidk@gmail.com>
+Date:   Thu Aug 11 12:41:52 2022 +0530
+
+    New shopping cart project started. set up the layout and headers. Changed the default layout and partial files. Alloted different header nav bar to user and admin.
