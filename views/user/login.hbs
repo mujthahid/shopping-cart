@@ -1,7 +1,15 @@
 {{!-- user login form --}}
 <section>
 <div class="container">
+  <div class="mt-2" style="text-align: center;">
+<h2>Login</h2>
+  </div>
 <form action="/login" method="post">
+{{#if loginErr}}
+
+  {{ loginErr}}
+
+{{/if}}
   <div class="form-group mt-4">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" name="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">

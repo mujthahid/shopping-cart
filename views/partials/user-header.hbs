@@ -15,8 +15,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Products</a>
                     </li>
+                    {{#if user}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cart</a>
+                        <a class="nav-link" href="#">Orders</a>
+                    </li>
+                    {{/if}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">Cart</a>
                     </li>
                    
                     <li>
@@ -26,7 +31,7 @@
                 </form>
                     </li>
                 </ul>
-                <div class="btn-group mr-5">
+                <div style="margin-inline-end: 5rem;" class="btn-group">
                         <button class="btn btn-success dropdown-toggle" href="#" id="navbarDropdown" type="button" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
      {{!-- Displays user name if user logged in.               --}}
@@ -38,7 +43,7 @@
                     
                         </button>
 
-                        <div  class="dropdown-menu dropdown-menu-right">
+                        <div  class="dropdown-menu">
  {{!-- Displays logout option if user logged in. --}}
 {{#if user}}
 <a class="dropdown-item" href="/logout">Logout</a>
