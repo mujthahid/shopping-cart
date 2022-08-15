@@ -25,7 +25,8 @@
       <td>₹{{this.Price}}</td>
       <td>{{this.Description}}</td>
       <td><img style="height: 50px; width: 50px;" src="/product-images/{{this._id}}.jpg" alt=""></td>
-     <td><a class="btn btn-success" href="/admin/edit-product">Edit</a></td>
+    {{!-- on clicking the edit button id is passed and awaiting response --}}
+     <td><a class="btn btn-success" href="/admin/edit-product/{{this._id}}">Edit</a></td>
      {{!-- on clicking the delete button id is passed and awaiting response --}}
      <td><a class="btn btn-danger" onclick="return confirm ('Are you sure to delete {{this.Name}} ?')" href="/admin/delete-product/{{this._id}}">Delete</a></td>
     </tr>

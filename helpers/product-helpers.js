@@ -27,7 +27,29 @@ resolve(products)})
             })
 
         })
+    },
+    // here on clicking edit button the function will collect details from db using id and return
+    getProductDetails:(prodId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:ObjectId(prodId)}).then((response)=>{
+                resolve(response)
+            })
+        })
+    },
+// on the submission from the edit product page the details will be updated to the db here
+    updateProduct:(prodId,proDetails)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:ObjectId(prodId)},{
+                $set:{
+                    Name:proDetails.Name,
+                    Price:proDetails.Price,
+                    Category:proDetails.Category,
+                    Description:proDetails.Description
+                }
+            }).then((response)=>{
+                resolve()
+            })
+        })
     }
-    
     }
 
