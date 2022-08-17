@@ -33,7 +33,10 @@ router.get('/', function(req, res, next) {
  })
  router.post('/signup',(req,res)=>{
   userHelpers.doSignup(req.body).then((response)=>{
-   console.log(response) 
+  //  
+  req.session.loggedIn=true
+  req,session.user=response
+  res.redirect('/')
   })
  })
  router.post('/login',(req,res)=>{
@@ -55,8 +58,17 @@ router.get('/', function(req, res, next) {
   res.redirect('/')
  })
 //  access to the cart page
- router.get('/cart',verifyLogin,(req,res)=>{
+ router.get('/cart',verifyLogin,async(req,res)=>{
+  //passing user if to the function to collect the user cart details
+  let products=await userHelpers.getCartProducts(req.session.user._id)
+  console.log(products);
   let user=req.session.user
  res.render('user/cart',{user})
+ })
+ //routing add to cart option
+ router.get('/add-to-cart/:id',verifyLogin,(req,res)=>{
+userHelpers.addToCart(req.params.id,req.session.user._id).then(()=>{
+  res.redirect('/')
+})
  })
 module.exports = router
