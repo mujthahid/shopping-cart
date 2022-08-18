@@ -77,4 +77,17 @@ userHelpers.addToCart(req.params.id,req.session.user._id).then(()=>{
   res.json({status:true})
 })
  })
+ router.post('/change-product-quantity',(req,res,next)=>{
+  userHelpers.changeProductQuantity(req.body).then((response)=>{
+res.json(response)
+  })
+  
+ })
+
+ router.post('/remove-from-cart',(req,res,next)=>{
+  console.log(req.body);
+  userHelpers.removeFromCart(req.body).then((response)=>{
+    res.json(response)
+  })
+ })
 module.exports = router

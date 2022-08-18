@@ -59,7 +59,7 @@ else{
                     {
                         $inc:{'products.$.quantity':1}
                     }
-                    ).then(()=>{
+                    ).then((response)=>{
                         resolve()
                     })
                 }else{
@@ -107,6 +107,11 @@ let cartItems = await db.get().collection(collection.CART_COLLECTION).aggregate(
         foreignField:'_id',
         as:'product'
     }
+   },
+   {
+    $project:{
+        item:1,quantity:1,product:{$arrayElemAt:['$product',0]}
+    }
    }
 ]).toArray()
 resolve(cartItems)
@@ -118,9 +123,46 @@ getCartCount:(userId)=>{
         let count=0
       let cart= await db.get().collection(collection.CART_COLLECTION).findOne({user:ObjectId(userId)})
         if(cart){
-            count=cart.products.length
+
+     count= cart.products.length     
         }
         resolve(count)
+    })
+},
+changeProductQuantity:(details)=>{
+    count=parseInt(details.count)
+    quantity=parseInt(details.quantity)
+    
+    return new Promise((resolve,reject)=>{
+        if(count==-1 && quantity==1){
+            db.get().collection(collection.CART_COLLECTION).updateOne({_id:ObjectId(details.cart)},
+            {
+                $pull:{products:{item:ObjectId(details.product)}}
+            }).then((response)=>{
+                resolve({removeProduct:true})
+            })
+        }else{
+        db.get().collection(collection.CART_COLLECTION).updateOne({'products.item':ObjectId(details.product),_id:ObjectId(details.cart)},
+        {
+            $inc:{'products.$.quantity':count}
+        }
+        ).then((response)=>{
+           
+            resolve(true)
+        })
+    }
+    })
+},
+
+removeFromCart:(details)=>{
+    return new Promise((resolve,reject)=>{
+        db.get().collection(collection.CART_COLLECTION).updateOne({_id:ObjectId(details.cart)},
+        {
+            $pull:{products:{item:ObjectId(details.product)}}
+        }).then((response)=>{
+            resolve({removeProduct:true})
+        })
+
     })
 }
 }
