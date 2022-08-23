@@ -1,0 +1,32 @@
+ <section>
+    <div class="container">
+        <div class="table-responsive mt-5">
+ <table class="table table-striped table-dark">
+  <thead>
+
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr>
+      <th scope="row">1</th>
+      <td><img style="width: 70px; height: auto;" src="/product-images/{{this.productId}}.jpg" alt=""></td>
+      <td>{{this.products.Name}}</td>
+      <td>₹{{this.products.Price}}</td>
+      <td>{{this.products.Description}}</td>
+      <td>{{this.quantity}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+        </div>
+    </div>
+ </section>
+ 

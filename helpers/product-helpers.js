@@ -5,10 +5,16 @@ const { ObjectId } = require('mongodb')
 var objectId=require('mongodb').ObjectID
 module.exports={
     //gets req.body as product here
-    addProduct:(product,callback)=>{
+    addProduct:(prod,callback)=>{
+     let product={
+        Name:prod.Name,
+        Price:parseInt(prod.Price),
+        Category:prod.Category,
+        Description:prod.Description
+       }
         // console.log(product)
         //inserting products to the database collection
-db.get().collection('product').insertOne(product).then((data)=>{
+db.get().collection(collection.PRODUCT_COLLECTION).insertOne(product).then((data)=>{
    //set up callback function to the 
     callback(data.insertedId)
 })
@@ -42,7 +48,7 @@ resolve(products)})
             db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:ObjectId(prodId)},{
                 $set:{
                     Name:proDetails.Name,
-                    Price:proDetails.Price,
+                    Price:parseInt(proDetails.Price),
                     Category:proDetails.Category,
                     Description:proDetails.Description
                 }

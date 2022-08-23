@@ -1,78 +1,120 @@
 <section class="mt-5">
-    <div class="container">
-        <table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">Item</th>
-      <th scope="col">Title</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Price</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each products}}
-    <tr>
-     
-      <td><img style="width: 70px;height: auto;" src="/product-images/{{this.product._id}}.jpg" alt=""></td>
-      <td>{{this.product.Name}}</td>
-      
-      <td><button  class="badge badge-light  mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)">-</button><span id="{{this.product._id}}">{{this.quantity}}</span>
-      <button class="badge badge-light ml-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)">+</button></td>
-   
-       <td>{{this.product.Price}}</td>
-       <td><button onclick="removeFromCart('{{this._id}}','{{this.product._id}}')" class="btn btn-danger"  ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-</svg></button></td>
-    </tr>
-    {{/each}}
-   
-  </tbody>
-</table>
+  <div class="container">
+
+    <table class="table table-striped table-dark ">
+      <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Title</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Subtotal</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        <tr>
+
+          <td><img style="width: 70px;height: auto;" src="/product-images/{{this.product._id}}.jpg" alt=""></td>
+          <td>{{this.product.Name}}</td>
+          <td>₹{{this.product.Price}}</td>
+          <td>
+            <button class="badge badge-light  mr-3"
+              onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','{{this.product.Price}}',-1)">-</button>
+            <span id="{{this.product._id}}">{{this.quantity}}</span>
+            <button class="badge badge-light ml-3"
+              onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','{{this.product.Price}}',1)">+
+            </button>
+          </td>
+
+
+          <td><span>₹<span class="{{this.product._id}}">{{this.subtotal}}</span></span></td>
+          <td><button onclick="removeFromCart('{{this._id}}','{{this.product._id}}')" class="btn btn-danger"><svg
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                viewBox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                <path fill-rule="evenodd"
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+              </svg></button></td>
+        </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+
+    <div class="card mb-5">
+      <div style="background-color:#212529;" class="card-body form-control">
+
+        <div class="float-right">
+          <p style="color:aliceblue ;" class="mb-0 mr-5 d-flex align-items-center">
+            <span class="small text-muted mr-2 ">Order total:</span>
+            <span>₹<span id="total" class="lead fw-normal">{{total}}</span></span>
+          </p>
+        </div>
+
+      </div>
     </div>
+
+    <div class="d-flex justify-content-end mb-5">
+      <a href="/" type="button" class="btn btn-danger btn-md mr-2">Continue shopping</a>
+      <a href="/place-order/" type="button" class="btn btn-success btn-md">Place Order</a>
+    </div>
+  </div>
 </section>
 
 <script>
-    function changeQuantity(cartId,prodId,count){
-        let quantity= parseInt(document.getElementById(prodId).innerHTML)
-        count=parseInt(count)
-        $.ajax({
-            url:'/change-product-quantity',
-            data:{
-                cart:cartId,
-                product:prodId,
-                count:count,
-                quantity:quantity
-            },
-            method:'post',
-            success:(response)=>{
-             if(response.removeProduct){
-                location.reload()
-                alert('Product removed from the cart')
-             }else{
-                document.getElementById(prodId).innerHTML=quantity+count
-             }
-            }
-            })
-        }
-   
-    function removeFromCart(cartId,prodId){
-        $.ajax({
-            url:'/remove-from-cart',
-            data:{
-                cart:cartId,
-            product:prodId
-            },
-            method:'post',
-            success:(response)=>{
- if(response.removeProduct){
-                location.reload()
-                alert('Product removed from the cart')
-            }
-        }
-        }
-        )
-    }
+  function changeQuantity(cartId, prodId, userId, price, count) {
+    let quantity = parseInt(document.getElementById(prodId).innerHTML)
+    count = parseInt(count)
+    price = parseInt(price)
     
+    $.ajax({
+      url: '/change-product-quantity',
+      data: {
+        cart: cartId,
+        product: prodId,
+        userId: userId,
+        count: count,
+        quantity: quantity,
+        price: price,
+       
+      },
+      method: 'post',
+      success: (response) => {
+        if (response.removeProduct) {
+          location.reload()
+          alert('Product removed from the cart')
+        } else {
+          document.getElementById(prodId).innerHTML = quantity + count
+          document.getElementById('total').innerHTML = (response.total).toLocaleString()
+
+          document.getElementsByClassName(prodId)[0].innerHTML = ((quantity+count)*price).toLocaleString()
+
+        }
+      }
+    })
+  }
+
+  function removeFromCart(cartId, prodId) {
+    $.ajax({
+      url: '/remove-from-cart',
+      data: {
+        cart: cartId,
+        product: prodId
+      },
+      method: 'post',
+      success: (response) => {
+        console.log(response)
+        if (response.removeProduct) {
+
+          location.reload()
+          alert('Product removed from the cart')
+        }
+      }
+    }
+    )
+  }
+
 </script>

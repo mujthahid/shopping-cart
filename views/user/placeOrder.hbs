@@ -1,0 +1,106 @@
+<section>
+
+    <div class="container ">
+        <div class="row">
+        <div class="col-md-6 ">
+            <h3 class="mt-4">Enter Delivery Details</h3>
+            <div class="mb-3">
+            <form action="" id="checkout-form" >
+            
+                <div class="form-row mt-4 ">
+                    <div class="col-md-8 mb-3">
+                        <label for="validationServer01">Full name</label>
+                        <input name="userId" value="{{user._id}}" type="text" hidden>
+                        <input type="text" class="form-control" id="validationServer01" name="fullname" placeholder="Full name" required>
+
+                    </div>
+                   
+                    <div class="form-row">
+                        <div class="col-md-8 mb-3">
+                            <label for="contact">Contact Number</label>
+                            <input type="tel" class="form-control" id="contact" name="contact" placeholder="Contact Number" required>
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label for="address">Address</label><br>
+                            <textarea name="address" id="" cols="45" rows="" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label for="validationServer03">City</label>
+                            <input type="text" class="form-control " id="validationServer03" name="city" placeholder="City" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationServer04">State</label>
+                            <input type="text" class="form-control " id="validationServer04" name="state" placeholder="State" required>
+
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="validationServer05" >Zip</label>
+                            <input type="text" class="form-control" id="validationServer05" name="zip" placeholder="Zip" required>
+                        </div>
+                    </div>
+
+            
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-6">
+ <div style="width: 20rem; height: 20rem;" class="card mt-5 mb-5 ml-5 pl-3 pt-3 ">
+ 
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Cart Summary</h5>
+                </div>
+                <div class="ibox-content">
+                    <span>
+                        Total
+                    </span>
+                    <h2 class="font-bold">
+                        ₹{{total}}
+                    </h2>
+
+                    <hr>
+                    <div>
+                        <h5 class="mb-2">Payment Method</h5>
+                         <input class="mb-1" id="online" name="method" value="online" type="radio" required><span> </span>
+                        <label for="online" class="mb-1">Online</label><br>
+                        <input class="mb-1" id="cod" name="method" value="cod" type="radio" required><span> </span>
+                        <label class="mb-1" for="cod">COD</label><br>
+                       
+                    </div>
+                    <div class="m-t-sm">
+                        <div class="btn-group mt-4">
+                        <button  type="submit" class="btn btn-success btn-sm mr-3 "><i class="fa fa-shopping-cart"></i> Checkout</button><span></span>
+                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </div>
+</div>
+    
+    </div>
+</section>
+
+<script>
+    $("#checkout-form").submit((e)=>{
+   e.preventDefault() 
+   $.ajax({
+    url:'/place-order',
+    method:'post',
+    data:$('#checkout-form').serialize(),
+    success:(response)=>{
+       if(response.orderStatus==='placed'){
+        location.href='/order-confirmation'
+       }
+    }
+   })
+   })
+</script>
