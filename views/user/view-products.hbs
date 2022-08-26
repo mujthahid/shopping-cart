@@ -1,9 +1,10 @@
  <section>
         <div class="container mt-4">
             <div class="row">
-                {{#each products}}
-                <div class="col-md-3">
-                    <div class="card mt-2 mb-2" style="width: 17rem; ">
+                 {{#each products}}
+                <div class=" col-md-3">
+                   
+                    <div class="card mt-2 mb-2 " style="width: 100%; ">
                         <img class="card-img-top" 
                             src="/product-images/{{this._id}}.jpg"
                             alt="Card image cap">
@@ -13,6 +14,7 @@
                             <p class="card-text text-truncate">{{this.Description}}</p>
                            
                             <button  onclick="addToCart('{{this._id}}')" class="btn btn-success">Add to cart</button>
+                            <a href="/buy-now/{{this._id}}" class="btn btn-danger ">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -20,3 +22,4 @@
             </div>
         </div>
     </section>
+
