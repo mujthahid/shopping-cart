@@ -20,11 +20,25 @@ db.get().collection(collection.PRODUCT_COLLECTION).insertOne(product).then((data
 })
     },
     //assigning the function to get the product list from the database.
-    getAllProducts: ()=>{
+    getProductsByCategory: (category)=>{
+
         return new Promise(async(resolve,reject)=>{
-let products= await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
-resolve(products)})
+let products= await db.get().collection(collection.PRODUCT_COLLECTION).find({Category:category}).toArray()
+
+resolve(products)
+})
         },
+
+        getAllProducts: ()=>{
+
+            return new Promise(async(resolve,reject)=>{
+    let products= await db.get().collection(collection.PRODUCT_COLLECTION).find().toArray()
+    
+    resolve(products)
+    })
+            },
+
+
     //deleting the product upon the delete button click action by the admin by passing the product id. Accessing the database document by id and deleting it.
     deleteProduct:(prodId)=>{
         return new Promise((resolve,reject)=>{

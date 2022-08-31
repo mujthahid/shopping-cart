@@ -1,11 +1,11 @@
 
-<section class="col-sm-12 ">
+<section style="margin-top: 7rem;" class="col-sm-12 mb-5">
     <div class="container">
         <div class="row mt-4">
     <a href="/admin/add-product" class="btn btn-success ml-auto ">Add Product</a>
 </div>
 <div class="table-responsive-sm">
-        <table class=" table table-dark  mt-5 " style="font-size:smaller;">
+        <table id="table_id" class=" table table-dark  mt-5 " style="font-size:smaller;">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -14,13 +14,14 @@
       <th scope="col">Price</th>
       <th scope="col">Description</th>
       <th scope="col">Image</th>
+      <th scope="col">Options</th>
     </tr>
   </thead>
   <tbody>
     {{#each products}}
     <tr>
        
-      <th scope="row">1</th>
+      <th class=i scope="row">{{i}}</th>
       <td>{{this.Name}}</td>
       <td>{{this.Category}}</td>
       <td>₹{{this.Price}}</td>
@@ -45,3 +46,14 @@
 </div>
     </div>
 </section>
+
+<script>
+  $(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
+<script>
+  for(i=1;i>=1;i++){
+    document.getElementsByClassName('i')[i-1].innerHTML=i
+  }
+</script>

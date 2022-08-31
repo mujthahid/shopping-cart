@@ -1,0 +1,75 @@
+<section class="mb-5" style="margin-top: 7rem;">
+    <div class="mr-3 mb-3" style="text-align: right;">
+        <a href="/admin/change-banners" class="btn btn-success ml-2 mr-2">Change Home Page Banners</a>
+    </div>
+
+    <div class="container col-md-8 col-lg-6">
+
+
+        <div class="mb-4 ml-1">
+            <h1 style="">Admin Panel</h1>
+
+        </div>
+ <table class="table table-striped table-dark">
+
+            {{!-- <tr>
+                <th scope="row">Cashflow:</th>
+                <td>Mark</td>
+            </tr> --}}
+
+            <tr>
+                <th scope="row">Net Sales:</th>
+                <td>₹ <span>{{data.netSales}}</span></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Amount Collected/Online</th>
+                <td>₹ <span></span>{{data.amountOnline}}</td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">Amount Yet to Collect/COD</th>
+                <td>₹ <span>{{data.amountOffline}}</span></td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">Placed Orders/Online</th>
+                <td>{{data.placedOrdersOnline}}</td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">Placed Orders/COD</th>
+                <td>{{data.placedOrdersOffline}}</td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">Pending Orders</th>
+                <td>{{data.pendingOrders}}</td>
+            </tr>
+
+ <tr>
+                <th scope="row">Pending Amount</th>
+                <td>₹ <span>{{data.pendingAmount}}</span></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Cancelled Orders/Online</th>
+                <td>{{data.cancelledOrdersOnline}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Cancelled Orders/COD</th>
+                <td>{{data.cancelledOrdersOffline}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Total Refund Initiated</th>
+                <td>₹ <span>{{data.totalRefund}}</span></td>
+            </tr>
+        </table>
+   </div>
+</section>

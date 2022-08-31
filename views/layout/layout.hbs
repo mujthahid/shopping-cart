@@ -10,9 +10,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-       
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <title>Shopify.com</title>
 </head>
 
@@ -24,6 +26,10 @@
     {{>user-header}}
     {{/if}}
     {{{body}}}
+
+    {{!-- <footer class="foot" >
+        <h6 style="font-size: smaller;">© Mujthahid 2022</h6>
+    </footer> --}}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -39,6 +45,23 @@
         <script src="/javascripts/addToCart.js"></script>
        <script src="/javascripts/checkoutForm.js"></script>
        <script src="/javascripts/paymentHelpers.js"></script>
+     <script src="/javascripts/categoryCall.js"></script>
 </body>
 
 </html>
+
+
+{{!-- <style>
+    .foot{
+        background-color: #383838;
+         color: cornsilk;  
+         text-align: center; 
+         height: 25px;
+        position: fixed;
+        overflow-x: hidden;
+         bottom: 0;
+        padding-top: 6px ;
+        font-family:  Roboto,Arial,sans-serif;
+         width: 100%;
+}
+</style> --}}

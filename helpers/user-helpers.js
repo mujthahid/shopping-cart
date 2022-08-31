@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt')
 const { ObjectId } = require('mongodb')
 var objectId = require('mongodb').ObjectID
 const Razorpay = require('razorpay');
+const { resolve } = require('path')
 var instance = new Razorpay({ key_id: 'rzp_test_p5neKGHUt06jiF', key_secret: 'GUGjG5bF5BZW2PuAVZIv7S4Y' })
 
 module.exports = {
@@ -27,13 +28,13 @@ module.exports = {
             if (user) {
                 bcrypt.compare(userData.Password, user.Password).then((status) => {
                     if (status) {
-                        console.log('login success');
+                        
                         response.status = true
                         response.user = user
                         resolve(response)
                     }
                     else {
-                        console.log('login failed');
+                        
                         resolve({ status: false })
                     }
                 })
@@ -45,8 +46,8 @@ module.exports = {
 
         })
     },
-    //user id and product id is passed, would the find the user cart if any, from the db using id, else new cart will be created
-    //* products added to that cart
+    // will find the user cart if any, from the db using id, else new cart will be created
+   
     addToCart: (prodId, userId) => {
         let proObj = {
             item: ObjectId(prodId),
@@ -231,7 +232,10 @@ module.exports = {
     },
     placeOrder:(order,products,total,channel)=>{
         return new Promise((resolve,reject)=>{
-            let status=order.method==='cod'?'placed':'pending'
+            let today=new Date()
+            today = today.toString();
+            today = today.split('G')[0];
+            let status=order.method==='COD'?'placed':'pending'
 let orderObj={
     deliveryDetails:{
         fullname:order.fullname,
@@ -242,8 +246,9 @@ let orderObj={
         zip:order.zip
     },
     userId:ObjectId(order.userId),
-    date:new Date(),
+    date:today,
     total_amount:total,
+    method:order.method,
     status:status,
     products:products
    
@@ -385,6 +390,18 @@ console.log(product);
 // console.log(orderId);
 // console.log(order);
 resolve(order.total_amount)
+        })
+    },
+
+    cancelOrder:(orderId)=>{
+        return new Promise(async(resolve,reject)=>{
+await db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderId)},
+{
+    $set:{status:'cancelled'}
+}).then(()=>{
+   
+    resolve()
+})
         })
     }
 

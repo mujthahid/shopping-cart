@@ -1,0 +1,33 @@
+<section class="mb-5" style="margin-top: 7rem;">
+    <div class="container col-md-4">
+        <div  class="mt-3" style="text-align: center;"><h1>Change/Add Banners</h1></div>
+<form class="mt-4" action="/admin/change-banners" enctype="multipart/form-data" method="post">
+ <div class="form-group">
+    <label for="exampleFormControlSelect1">BannerID</label>
+    <select class="form-control" name="BannerID"  id="exampleFormControlSelect1">
+      <option value="1">Banner1</option>
+      <option value="2">Banner2</option>
+      <option value="3">Banner3</option>
+      <option value="4">Banner4</option>
+      <option value="5">Banner5</option>
+    </select>
+  </div>
+
+    <label for="bannerImage"> Add Image :</label><br><br>
+    <img src="/banner-images/{{this.BannerID}}.jpg" alt="" style="width: 150px;height: auto;" id="imgView2">
+<input name="bannerImage" id="bannerImage" placeholder="Add Image" type="file" onchange="viewIamge(event)">
+<br><hr>
+<div style="text-align: center;">
+<button   class="btn btn-success mb-3" type="submit">Add</button>
+</div>
+
+</form>
+    </div>
+</section>
+
+
+<script>
+function viewImage(event){
+  document.getElementById("imgView2").src=URL.createObjectURL(event.target.files[0])
+}
+</script>

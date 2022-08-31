@@ -1,20 +1,22 @@
- <section>
+ <section style="margin-top: 7rem;" class="mb-5">
         <div class="container mt-4">
-            <div class="row">
+            <div class="row  ">
                  {{#each products}}
-                <div class=" col-md-3">
+                <div class="col-6 col-md-4 col-lg-3 ">
                    
-                    <div class="card mt-2 mb-2 " style="width: 100%; ">
+                    <div  class="card mt-2 mb-2 productCard " >
                         <img class="card-img-top" 
                             src="/product-images/{{this._id}}.jpg"
                             alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title text-truncate">{{this.Name}}</h5>
+                            <h5 class="card-title text-truncate name">{{this.Name}}</h5>
                             <h6 class="card-title">₹{{this.Price}}</h6>
-                            <p class="card-text text-truncate">{{this.Description}}</p>
-                           
-                            <button  onclick="addToCart('{{this._id}}')" class="btn btn-success">Add to cart</button>
-                            <a href="/buy-now/{{this._id}}" class="btn btn-danger ">Buy Now</a>
+                            <p class="card-text text-truncate description">{{this.Description}}</p>
+                           <div class="row">
+    <button  onclick="addToCart('{{this._id}}')" class="btn btn-success btn-sm ml-2 cart">Add to cart</button>
+                            <a href="/buy-now/{{this._id}}" class="btn btn-danger btn-sm ml-2 buy">Buy Now</a>
+                           </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -23,3 +25,23 @@
         </div>
     </section>
 
+<style>
+  
+.description:hover{
+     overflow: visible; 
+    white-space: normal; 
+ }
+
+ .name:hover{
+     overflow: visible; 
+    white-space: normal;
+ }
+
+ 
+ .buy:hover{
+transform: scale(1.1);'
+ }
+.cart:hover{
+    transform: scale(1.1); 
+}
+</style>

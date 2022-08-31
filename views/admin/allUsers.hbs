@@ -1,0 +1,38 @@
+ <section  style="margin-top: 9rem;" class="container mb-5 ">
+    <div  class="container  col-md-6">
+        <div  class= " table-responsive mt-5 ">
+ <table id="allUsers"   class="table table-striped table-dark " style="font-size:medium ;">
+  <thead>
+
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">UserID</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each user}}
+    <tr>
+      <th class="i" scope="row">{{i}}</th>
+      <td>{{this.Name}}</td>
+      <td>{{this.Email}}</td>
+      <td>{{this._id}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+        </div>
+    </div>
+ </section>
+ <script>
+  $(document).ready( function () {
+    $('#allUsers').DataTable();
+} );
+</script>
+<script>
+  for(i=1;i>=1;i++){
+    document.getElementsByClassName('i')[i-1].innerHTML=i
+  }
+</script>

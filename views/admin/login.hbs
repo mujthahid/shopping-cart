@@ -1,0 +1,27 @@
+
+<section class="mb-5"  style="margin-top: 7rem;">
+<div class="container col-md-4">
+  <div class="mt-2" style="text-align: center;">
+<h2>Admin Login</span></h2>
+
+  </div>
+<form action="/admin/login" method="post">
+{{#if loginErr}}
+
+  {{ loginErr}}
+
+{{/if}}
+  <div class="form-group mt-4">
+    <label for="exampleInputUsername">Username</label>
+    <input type="text" name="Username" class="form-control" id="exampleInputUsername"  placeholder="Enter username" required>
+   
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="Password" placeholder="Password" required>
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+</div>
+</section>
+
