@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload())
 // establishing seesion and cookies
-app.use(session({secret:"Key",cookie:{maxAge:600000}}))
+app.use(session({secret:"Key",cookie:{maxAge:6000000}}))
 //connecting database
 db.connect((err)=>{
   if(err) console.log('connection ERROR '+ err);

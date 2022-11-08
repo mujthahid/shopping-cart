@@ -1,11 +1,12 @@
 
 <section style="margin-top: 7rem;" class="col-sm-12 mb-5">
-    <div class="container">
-        <div class="row mt-4">
-    <a href="/admin/add-product" class="btn btn-success ml-auto ">Add Product</a>
+  <h3 style="text-align: center;">All Products</h3>
+    <div >
+        <div class="row mt-3">
+    <a href="/admin/add-product" class="btn btn-success ml-auto mr-3 ">Add Product</a>
 </div>
-<div class="table-responsive-sm">
-        <table id="table_id" class=" table table-dark  mt-5 " style="font-size:smaller;">
+<div class="allProdContainer">
+        <table id="table_id" class=" table table-dark  mt-3 " style="font-size:smaller;">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -57,3 +58,11 @@
     document.getElementsByClassName('i')[i-1].innerHTML=i
   }
 </script>
+
+<style>
+  .allProdContainer{
+    margin: 0 15px;
+    overflow-x: scroll;
+  }
+  
+</style>

@@ -3,6 +3,7 @@ var router = express.Router();
 var productHelper=require('../helpers/product-helpers')
 var adminHelpers=require('../helpers/admin-helpers');
 const { Db } = require('mongodb');
+const { Signup } = require('../helpers/admin-helpers');
 
 const verifyAdmin = ((req, res, next) => {
   if (req.session.adminLoggedIn) {
@@ -15,6 +16,7 @@ const verifyAdmin = ((req, res, next) => {
 
 
 router.get('/login', (req, res) => {
+  
   if (req.session.adminLoggedIn) {
     res.redirect('/admin')
   }

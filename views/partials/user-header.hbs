@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link scale" href="#about">About <span class="sr-only"></span></a>
+                    <a class="nav-link scale" href="/#about">About <span class="sr-only"></span></a>
                 </li>
 
             </ul>
@@ -52,7 +52,7 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown ">
-                <a style="border-radius: 35%;" class="nav-link dropdown-toggle bg-light" href="#" id="navbarDropdown" role="button"
+                <a style="border-radius: 35%;" class=" bg-light" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{!-- Displays user name if user logged in. --}}
                     <img style="width: 25px; border-radius: 25px;" src="/icons/boss.png" alt=""><br>
@@ -83,6 +83,9 @@
 </header>
 
 <style>
+   
+@media screen (min-width:992px) {
+    
     .scale:hover {
         transform: scale(1.1);
     }
@@ -90,4 +93,5 @@
         transform: scale(1.01);
         
     }
+}
 </style>

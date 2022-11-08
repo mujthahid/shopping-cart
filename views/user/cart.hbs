@@ -1,7 +1,13 @@
 <section style="margin-top: 7rem;">
-  <div class="container">
+  <h3 style="text-align: center;">Cart</h3>
+  
+  <div class="cartContainer mt-5">
 
-    <table class="table table-striped table-dark " style="font-size: small;">
+  
+  
+  <div class="cartTable">
+
+    <table class=" table table-striped table-dark " style="font-size: small;">
       <thead>
         <tr>
           <th scope="col">Item</th>
@@ -22,11 +28,11 @@
           <td><img style="width: 70px;height: auto;" src="/product-images/{{this.product._id}}.jpg" alt=""></td>
           <td>{{this.product.Name}}</td>
           <td>₹{{this.product.Price}}</td>
-          <td>
-            <button class="badge badge-light  mr-3"
+          <td class="quantityOfItem">
+            <button class="badge badge-light  mr-1"
               onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','{{this.product.Price}}',-1)">-</button>
             <span id="{{this.product._id}}">{{this.quantity}}</span>
-            <button class="badge badge-light ml-3"
+            <button class="badge badge-light ml-1"
               onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','{{this.product.Price}}',1)">+
             </button>
           </td>
@@ -47,21 +53,21 @@
 
       </tbody>
     </table>
-
+</div>
     <div class="card mb-5">
       <div style="background-color:#212529;" class="card-body form-control">
 
         <div class="float-right">
           <p style="color:aliceblue ;" class="mb-0 mr-5 d-flex align-items-center">
             <span class="small text-muted mr-2 ">Order total:</span>
-            <span>₹<span id="total" class="lead fw-normal">{{total}}</span></span>
+            <span>₹ <span id="total" class="lead fw-normal">{{total}}</span></span>
           </p>
         </div>
 
       </div>
     </div>
 
-    <div class="d-flex justify-content-end mb-5">
+    <div class="d-flex justify-content-end mb-5 buttonClass">
       <a href="/" type="button" class="btn btn-danger btn-md mr-2">Continue shopping</a>
       <a href="/place-order/" type="button" class="btn btn-success btn-md">Place Order</a>
     </div>
@@ -122,3 +128,22 @@
   }
 
 </script>
+
+<style>
+  .cartContainer{
+    margin: 0 15px;
+    
+  }
+  .cartTable{
+    overflow-x: scroll;
+  }
+
+  @media only screen and (max-width:565px) {
+    .quantityOfItem {
+      display: flex;
+    }
+    
+  }
+
+
+</style>
