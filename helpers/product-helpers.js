@@ -5,18 +5,25 @@ const { ObjectId } = require('mongodb')
 var objectId=require('mongodb').ObjectID
 module.exports={
     //gets req.body as product here
-    addProduct:(prod,callback)=>{
+    addProduct:(prod,result)=>{
      let product={
         Name:prod.Name,
         Price:parseInt(prod.Price),
         Category:prod.Category,
-        Description:prod.Description
-       }
-        // console.log(product)
+        Description:prod.Description,
+        Image_Public_id:result.public_id,
+        Image_URL:result.url
+        }
+        
         //inserting products to the database collection
-db.get().collection(collection.PRODUCT_COLLECTION).insertOne(product).then((data)=>{
-   //set up callback function to the 
-    callback(data.insertedId)
+        return new Promise(async(resolve,reject)=>{
+
+          await db.get().collection(collection.PRODUCT_COLLECTION).insertOne(product).then((data)=>{
+                
+                resolve()
+
+        })
+
 })
     },
     //assigning the function to get the product list from the database.
@@ -44,6 +51,7 @@ resolve(products)
         return new Promise((resolve,reject)=>{
             db.get().collection(collection.PRODUCT_COLLECTION).deleteOne({_id:ObjectId(prodId)}).then((response)=>{
                 resolve(response)
+                console.log('response is ',response)
             })
 
         })
@@ -58,6 +66,7 @@ resolve(products)
     },
 // on the submission from the edit product page the details will be updated to the db here
     updateProduct:(prodId,proDetails)=>{
+        
         return new Promise((resolve,reject)=>{
             db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:ObjectId(prodId)},{
                 $set:{
@@ -70,6 +79,20 @@ resolve(products)
                 resolve()
             })
         })
-    }
+    },
+    
+
+    updateImage:(prodId,imageData) =>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:ObjectId(prodId)},{
+                $set:{
+                    Image_Public_id:imageData.public_id,
+                    Image_URL:imageData.url
+                }
+            }).then(()=>{
+                resolve()
+            })
+        })
     }
 
+}

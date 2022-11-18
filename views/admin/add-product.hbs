@@ -33,9 +33,17 @@
 
   <div class="form-group">
     <label for="exampleFormControlFile1">Image</label>
-    <input type="file" name="Image" class="form-control-file" id="exampleFormControlFile1">
+    <img src="" class="mb-3" style="width: 100px;height: auto;" id="imgPreview">
+    <input type="file" name="Image" class="form-control-file" id="exampleFormControlFile1" onchange="preview(event)">
   </div>
-<button  style="width: 90px;" type="submit" class="btn btn-success mb-4">Submit</button>
+<button  style="width: 90px;" type="submit" class="btn btn-success mb-4  ">Submit</button>
 </form>
  </div>
  </section>
+
+ <script>
+function preview(event){
+  document.getElementById("imgPreview").src=URL.createObjectURL(event.target.files[0])
+}
+
+ </script>

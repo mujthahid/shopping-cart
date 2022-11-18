@@ -4,6 +4,7 @@ var productHelper=require('../helpers/product-helpers')
 var adminHelpers=require('../helpers/admin-helpers');
 const { Db } = require('mongodb');
 const { Signup } = require('../helpers/admin-helpers');
+const cloudinary = require('../utils/cloudinary')
 
 const verifyAdmin = ((req, res, next) => {
   if (req.session.adminLoggedIn) {
@@ -60,53 +61,91 @@ data.amountOffline=data.amountOffline.toLocaleString()
 
 router.get('/view-products',verifyAdmin, function(req, res, next) {
   productHelper.getAllProducts().then((products)=>{
-    
+    console.log(products)
     res.render('admin/view-products',{admin:true,products});
   })
  
  
  
-}); //assigning add-product page
+}); 
+//assigning add-product page
+
 router.get('/add-product',verifyAdmin,(req,res)=>{
   res.render('admin/add-product',{admin:true})
-}) //assigning add product submit option
-router.post('/add-product',verifyAdmin,(req,res)=>{
-  // console.log(req.files.Image);
-  productHelper.addProduct(req.body,(id)=>{
-    let image=req.files.Image
-    //setting the name of image file as database id and moving to a seperate folder
-    image.mv('./public/product-images/'+id+'.jpg',(err)=>{
-      if(!err){
-         res.render('admin/add-product',{admin:true})}
-         else {
-          console.log(err);
-         }
-    })
-   
+})
 
+//assigning add product submit option
+
+router.post('/add-product',verifyAdmin, (req,res)=>{
+let image = req.files.Image
+
+try{
+
+  cloudinary.uploader.upload(image.tempFilePath,{
+   folder: "Products",
+   unique_filename: true 
+  }).then( result=> {
+  console.log(result)
+ productHelper.addProduct(req.body,result).then(()=>{
+  res.redirect('/admin/view-products')
   })
+  });
+
+}
+
+catch(err){
+  console.log(`error : ${err}`)
+}
+
+  
  
 })
 //  product database id is passed to the productHelper
-router.get('/delete-product/:id',verifyAdmin,(req,res)=>{
+router.get('/delete-product/:id',verifyAdmin,async(req,res)=>{
   let proId=req.params.id
+ let product = await productHelper.getProductDetails(proId)
+ let public_id = await product.Image_Public_id
+ await cloudinary.uploader.destroy(public_id, function(result){
+   console.log(result) });
  productHelper.deleteProduct(proId).then((response)=>{
-  res.redirect('/admin')
+  res.redirect('/admin/view-products')
  })
 })
+
 router.get('/edit-product/:id',verifyAdmin,async(req,res)=>{
  let product=await productHelper.getProductDetails(req.params.id)
   res.render('admin/edit-product',{product,admin:true})
 })
+
 router.post('/edit-product/:id',verifyAdmin,(req,res)=>{
+ 
   productHelper.updateProduct(req.params.id,req.body).then(()=>{
-    res.redirect('/admin/view-products')
-    if(req?.files?.Image){
+     
+if(req?.files?.Image){
 let image=req.files.Image
-let id=req.params.id
-      image.mv('./public/product-images/'+id+'.jpg')
- }
-  })
+PublicID = req.body.PublicID
+try {
+
+  cloudinary.uploader.upload(image.tempFilePath,{
+   public_id:PublicID,
+   unique_filename: true,
+   overwrite: true
+  }).then(result=> {
+    console.log(result)
+  productHelper.updateImage(req.params.id,result)
+}).then(()=>{
+  res.redirect('/admin/view-products')
+})
+}
+catch(err){
+  console.log(`error : ${err}`)
+}
+}else{
+res.redirect('/admin/view-products')
+}
+
+})
+
 })
 
 router.get('/all-orders',verifyAdmin,async(req,res)=>{

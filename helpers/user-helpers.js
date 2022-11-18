@@ -124,9 +124,10 @@ module.exports = {
                         product: '$product'
                     }
                 }
+               
 
             ]).toArray()
-          
+          console.log(cartItems)
             resolve(cartItems)
         })
     },

@@ -17,7 +17,7 @@
     {{#each products}}
     <tr>
       <th class="i" scope="row">{{i}}</th>
-      <td><img style="width: 70px; height: auto;" src="/product-images/{{this.productId}}.jpg" alt=""></td>
+      <td><img style="width: 70px; height: auto;" src={{this.products.Image_URL}} alt=""></td>
       <td>{{this.products.Name}}</td>
       <td>₹{{this.products.Price}}</td>
     

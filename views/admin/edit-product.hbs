@@ -36,7 +36,8 @@
 
   <div class="form-group">
     <label for="exampleFormControlFile1">Image</label>
-    <img src="/product-images/{{product._id}}.jpg" alt="" style="width: 100px;height: auto;" id="imgView">
+    <img src={{product.Image_URL}} style="width: 100px;height: auto;" id="imgView">
+    <input type="text" name="PublicID" value="{{product.Image_Public_id}}" hidden>
     <input type="file" name="Image" class="form-control" id="exampleFormControlFile1" onchange="viewImage(event)"> 
   </div>
 <button style="width: 90px;" type="submit" class="btn btn-success mb-4">Submit</button>
