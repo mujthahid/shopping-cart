@@ -28,7 +28,10 @@ app.use(fileUpload({
   useTempFiles:true
 }))
 // establishing seesion and cookies
-app.use(session({secret:"Key",cookie:{maxAge:6000000}}))
+app.use(session({secret:"Key",
+resave: false,
+saveUninitialized:false,
+cookie:{maxAge:6000000}}))
 //connecting database
 db.connect((err)=>{
   if(err) console.log('connection ERROR '+ err);
